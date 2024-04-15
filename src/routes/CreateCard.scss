@@ -1,0 +1,77 @@
+/* Base styles for the form container */
+.create-card-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* General styling for form headings */
+.create-card-container h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Styling for form sections for better spacing and alignment */
+.create-card-container section {
+    margin-bottom: 20px;
+}
+
+/* Styling for input fields to make them more appealing */
+.create-card-container input[type="text"],
+.create-card-container input[type="email"],
+.create-card-container input[type="email"],
+.create-card-container input[type="url"],
+.create-card-container input[type="number"]{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    /* Makes padding not affect the width */
+}
+
+/* Focus styling to enhance usability */
+.create-card-container input:focus {
+    border-color: #0056b3;
+    outline: none;
+    /* Removes default focus outline */
+}
+
+/* Styling for placeholder to enhance clarity */
+.create-card-container input::placeholder {
+    color: #888;
+}
+
+/* Styling for error messages to make them clear and noticeable */
+.create-card-container .text-red-500 {
+    color: #e53e3e;
+    font-size: 0.875em;
+    /* Slightly smaller font size for error messages */
+    margin-top: 4px;
+}
+
+/* Styling for the submit button */
+.create-card-container button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+/* Hover and focus styles for the button */
+.create-card-container button[type="submit"]:hover,
+.create-card-container button[type="submit"]:focus {
+    background-color: #0056b3;
+}
+
+
+
+
