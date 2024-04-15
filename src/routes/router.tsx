@@ -33,6 +33,10 @@ export const router = createBrowserRouter([
         path: "/playground",
         element: <Playground />,
       },
+      {
+        path: "/favorites",
+        element: <Cards favoritesOnly={true} />,
+      },
       { path: "/practice", element: <Practice /> },
     ],
   },

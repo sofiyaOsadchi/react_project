@@ -1,0 +1,103 @@
+/* Base styles for the card component */
+.card-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #333;
+    text-align: center;
+    
+}
+
+
+
+.card-container .card-title {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.card-subtitle {
+    font-size: 18px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.card-link {
+    display: block;
+    margin-bottom: 10px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.card-image {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.card-info {
+    margin-top: 20px;
+}
+
+.card-info p {
+    margin: 5px 0;
+
+}
+
+.card-container p {
+    display: flex;
+    align-items: center;
+    /* Center align the icon with the text */
+    gap: 8px;
+    /* Adds a small space between the icon and the text */
+}
+
+.card-address {
+    font-style: italic;
+}
+
+/* Dark mode styles */
+.dark-mode .card-container {
+    background-color: #333;
+    /* Dark background */
+    color: #fff;
+    /* Light text */
+}
+
+.dark-mode .card-title,
+.dark-mode .card-subtitle {
+    color: #ccc;
+    /* Lighter text for titles in dark mode */
+}
+
+.dark-mode a {
+    color: #5599ff;
+    /* Bright link color for dark mode */
+}
+
+.dark-mode a:hover {
+    color: #4488ee;
+    /* Slightly darker on hover */
+}
+
+.card-container svg {
+    flex-shrink: 0;
+    color: #666;
+}
+
+
+@media (max-width: 600px) {
+    .card-container {
+        padding: 10px;
+        font-size: 90%;
+    }
+
+    .card-image {
+        max-width: 100%;
+        height: auto;
+    }
+}

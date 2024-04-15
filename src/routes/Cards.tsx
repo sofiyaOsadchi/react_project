@@ -6,9 +6,9 @@ import { useState, useEffect } from "react";
 import FavoriteButton from "../components/FavoriteButton";
 import { useCards } from "../hooks/useCards";
 
-const Cards = () => {
-  const { cards: contextCards } = useCardContext(); // Get cards from context
-  const { loading, error } = useCards(); // Get loading and error from useCards
+const Cards = ({ favoritesOnly = false }) => { 
+  const { cards: contextCards } = useCardContext();
+  const { loading, error } = useCards(); 
   const [favorites, setFavorites] = useState<string[]>([]);
 
   useEffect(() => {
@@ -28,14 +28,18 @@ const Cards = () => {
     localStorage.setItem("favorites", JSON.stringify(currentFavorites));
   }
 
+  const filteredCards = favoritesOnly 
+    ? contextCards.filter(card => favorites.includes(card._id))
+    : contextCards; 
+
   return (
     <div className="cards-container dark:bg-gray-700">
       {loading && <Spinners />}
       {error && <div>{error}</div>}
 
-      {contextCards.map((c) => (
+      {filteredCards.map((c) => (
         <div key={c._id}>
-          <Link to={`cards/${c._id}`} className="card-link dark:bg-gray-500 dark:text-white rounded-lg shadow-lg p-4">
+          <Link to={`/cards/${c._id}`} className="card-link dark:bg-gray-500 dark:text-white rounded-lg shadow-lg p-4">
             <FavoriteButton
               cardId={c._id}
               isFavorite={favorites.includes(c._id)}
