@@ -4,8 +4,9 @@ import { useEffect, useState } from "react";
 import { CardType } from "../@types/types";
 import "./Search.scss"
 import { useCards } from "../hooks/useCards";
+import { useCardContext } from "../contexts/CardsContext";
 
- const Item = ({ text, collapsed, id, callback }) => {
+const Item = ({ text, collapsed, id, callback }) => {
     if (collapsed) {
         return (
             <button
@@ -19,10 +20,10 @@ import { useCards } from "../hooks/useCards";
     }
 
     return <div>{text}</div>;
-}; 
+};
 
 const Search = () => {
-    const { setCards } = useCards();
+    const { cards, setCards } = useCardContext();
     const api = `https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards`;
     const [allCards, setAllCards] = useState<CardType[]>([]);
     const [filteredCards, setFilteredCards] = useState<CardType[]>([]);
@@ -32,17 +33,15 @@ const Search = () => {
         axios.get(api).then((res) => setAllCards(res.data));
     }, []);
 
-   useEffect(() => {
-        // Filter cards based on the search term
-        const f = allCards.filter((c) => c.title.toLowerCase().includes(search.toLowerCase())); // Added toLowerCase() for case-insensitive search
-        setFilteredCards(f);
-        setCards(f);
-    }, [search, allCards]); 
+    useEffect(() => {
+        const f = allCards.filter((c) => c.title.includes(search));
+        setCards(f); // Set the filtered cards in the context
+    }, [search, allCards]);
 
     return (
         <Stack className="search-container">
             <TextField
-                className="search-input"
+                className="search-input dark:bg-gray-700 dark:text-white"
                 onChange={(e) => {
                     setSearch(e.currentTarget.value);
                 }}

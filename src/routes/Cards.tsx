@@ -1,13 +1,14 @@
-/*  import { useTheme } from "../../hooks/useTheme";  */
 import { Link } from "react-router-dom";
 import Spinners from "../components/Spinners";
-import { useCards } from "../hooks/useCards";
+import { useCardContext } from "../contexts/CardsContext"; // Import useCardContext instead of useCards
 import "./Cards.scss";
 import { useState, useEffect } from "react";
 import FavoriteButton from "../components/FavoriteButton";
+import { useCards } from "../hooks/useCards";
 
 const Cards = () => {
-  const { cards, loading, error } = useCards();
+  const { cards: contextCards } = useCardContext(); // Get cards from context
+  const { loading, error } = useCards(); // Get loading and error from useCards
   const [favorites, setFavorites] = useState<string[]>([]);
 
   useEffect(() => {
@@ -32,9 +33,8 @@ const Cards = () => {
       {loading && <Spinners />}
       {error && <div>{error}</div>}
 
-      {cards.map((c) => (
-        <div key={c._id} 
-        >
+      {contextCards.map((c) => (
+        <div key={c._id}>
           <Link to={`cards/${c._id}`} className="card-link dark:bg-gray-500 dark:text-white rounded-lg shadow-lg p-4">
             <FavoriteButton
               cardId={c._id}
@@ -53,4 +53,3 @@ const Cards = () => {
 };
 
 export default Cards;
-
