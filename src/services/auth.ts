@@ -18,6 +18,16 @@ export const userDetails = (id: string) => {
   });
 };
 
+export const businessUser = (id: string) => {
+  const url = `${usersUrl}/${id}`;
+  return axios.patch(url, {
+    isBusiness: true,
+  }, {
+    headers: {
+      "x-auth-token": localStorage.getItem("token"),
+    },
+  });
+}
 
 export const auth = {
   register,

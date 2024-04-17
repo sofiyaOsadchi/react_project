@@ -22,12 +22,15 @@ const Register = () => {
   });
   const [showPassword, setShowPassword] = useState(false);
 
+  const [isBusiness, setIsBusiness] = useState(false);
+
   const onRegister = (data: RegisterUser) => {
     auth
       .register(data) //request
       .then((res) => {
         //201 response
         localStorage.setItem("user_id", res.data._id);
+        localStorage.setItem("isBusiness", res.data.isBusiness);
         dialogs.success("Success", "Register").then(() => {
           navigate("/login");
         });
@@ -35,6 +38,10 @@ const Register = () => {
       .catch((e) => {
         dialogs.error("Error", e.response.data);
       });
+  };
+
+  const handleBusinessCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsBusiness(e.target.checked);
   };
 
   return (
@@ -281,13 +288,30 @@ const Register = () => {
         </section>
 
         {/* isBusiness */}
-        <section className="checkbox-container">
+      {/*   <section className="checkbox-container">
           <label htmlFor="isBusiness">Business</label>
           <input id="isBusiness" type="checkbox" {...register("isBusiness")} />
           {errors.isBusiness && (
             <p className="text-red-500">{errors.isBusiness?.message}</p>
           )}
+        </section> */}
+
+        {/* isBusiness */}
+        <section className="checkbox-container">
+          <label htmlFor="isBusiness">Business</label>
+          <input
+            id="isBusiness"
+            type="checkbox"
+            defaultChecked={isBusiness}
+            onChange={handleBusinessCheckboxChange}
+            {...register("isBusiness")}
+          />
+          {errors.isBusiness && (
+            <p className="text-red-500">{errors.isBusiness?.message}</p>
+          )}
         </section>
+
+
         <button type="submit">Register</button>
       </form>
       {/* <DevTool control={control} /> */}

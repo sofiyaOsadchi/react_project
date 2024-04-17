@@ -6,7 +6,9 @@ import DarkModeToggle from "../DarkModeToggle/DarkModeToggle";
 import "./Navbar.scss";
 
 const Navbar = () => {
-  const { isLoggedIn, logout } = useAuth();
+  const { isLoggedIn, logout, isBusiness } = useAuth(); 
+  console.log("Is Logged In:", isLoggedIn, "Is Business:", isBusiness);
+
   const navigate = useNavigate();
   return (
     <nav className="site-navbar">
@@ -34,6 +36,9 @@ const Navbar = () => {
 
         {isLoggedIn && <NavLink to="/profile">{/* <RxAvatar/> */} Profile</NavLink>}
         {isLoggedIn && <NavLink to="/favorites">Favorites</NavLink>}
+        {isLoggedIn && isBusiness && (
+          <NavLink to="/create-card">Create Card</NavLink>
+        )}
         <DarkModeToggle />
       </div>
     </nav>

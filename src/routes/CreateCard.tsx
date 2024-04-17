@@ -8,30 +8,34 @@ import { useNavigate } from "react-router-dom";
 import { CardData } from "../@types/CardData";
 import patterns from "../validation/patterns";
 import "./CreateCard.scss";
+import { useAuth } from "../contexts/AuthContext";
 
 const CreateCard = () => {
+    const { token } = useAuth(); // Get the token from the context
     const navigate = useNavigate();
-    const { register, handleSubmit, formState: { errors } } = useForm<CardData>({
-        // Remove defaultValues if not necessary or update them according to CardData type
-    });
+    const { register, handleSubmit, formState: { errors } } = useForm<CardData>();
 
-    const onSubmit = (data: CardData) => {
-        // Replace 'auth.register' with your API request to create a card
-        axios.post('https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards', data, {
-            headers: { 'x-auth-token': 'YourAuthTokenHere' } // Ensure this is dynamically set as needed
-        })
-            .then((res) => {
-                dialogs.success("Success", "Card Created Successfully").then(() => {
-                    navigate("/my-cards"); // Navigate to the My Cards page or wherever appropriate
-                });
-            })
-            .catch((e) => {
-                dialogs.error("Error", e.response.data);
+    const onSubmit = async (data: CardData) => {
+        if (!token) {
+            dialogs.error("Error", "No authentication token found.");
+            return;
+        }
+
+        try {
+            await axios.post('https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards', data, {
+                headers: { 'x-auth-token': token }
             });
+            dialogs.success("Success", "Card Created Successfully").then(() => {
+                navigate("/my-cards");
+            });
+        } catch (error) {
+            dialogs.error("Error", error.response.data);
+        }
     };
 
+
     return (
-        <div className="create-card-container">
+        <div className="create-card-container bg-purple-900  text-white dark:bg-slate-600">
             <h2>Create New Card</h2>
             <form noValidate onSubmit={handleSubmit(onSubmit)}>
                 {/* All form fields updated for card creation */}
