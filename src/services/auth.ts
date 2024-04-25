@@ -8,14 +8,10 @@ export const loginUrl = `${baseUrl}/users/login`;
 export const register = (data: RegisterUser) => axios.post(usersUrl, data);
 export const login = (data: LoginUser) => axios.post(loginUrl, data);
 
+
 export const userDetails = (id: string) => {
   const url = `${usersUrl}/${id}`;
-
-  return axios.get(url, {
-    headers: {
-      "x-auth-token": localStorage.getItem("token"),
-    },
-  });
+  return axios.get(url);
 };
 
 export const businessUser = (id: string) => {

@@ -1,13 +1,13 @@
 import { FaHome } from "react-icons/fa";
 import { RxAvatar } from "react-icons/rx";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth";
 import DarkModeToggle from "../DarkModeToggle/DarkModeToggle";
 import "./Navbar.scss";
+import { useAuth } from "../../contexts/AuthContext";
 
 const Navbar = () => {
-  const { isLoggedIn, logout, isBusiness } = useAuth(); 
-  console.log("Is Logged In:", isLoggedIn, "Is Business:", isBusiness);
+  const { isLoggedIn, user, logout } = useAuth();
+
 
   const navigate = useNavigate();
   return (
@@ -17,7 +17,7 @@ const Navbar = () => {
           Home
           <FaHome />
         </NavLink>
-      
+
       </div>
 
       <div className="nav-right">
@@ -36,7 +36,7 @@ const Navbar = () => {
 
         {isLoggedIn && <NavLink to="/profile">{/* <RxAvatar/> */} Profile</NavLink>}
         {isLoggedIn && <NavLink to="/favorites">Favorites</NavLink>}
-        {isLoggedIn && isBusiness && (
+        {isLoggedIn && user?.isBusiness && (
           <NavLink to="/create-card">Create Card</NavLink>
         )}
         <DarkModeToggle />

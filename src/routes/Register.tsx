@@ -9,6 +9,7 @@ import { registerMock } from "../mocks/register";
 import auth from "../services/auth";
 import dialogs from "../ui/dialogs";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -20,24 +21,22 @@ const Register = () => {
   } = useForm<RegisterUser>({
     defaultValues: registerMock,
   });
+
+  const { register: registerUser } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
 
   const [isBusiness, setIsBusiness] = useState(false);
 
   const onRegister = (data: RegisterUser) => {
-    auth
-      .register(data) //request
-      .then((res) => {
-        //201 response
-        localStorage.setItem("user_id", res.data._id);
-        localStorage.setItem("isBusiness", res.data.isBusiness);
-        dialogs.success("Success", "Register").then(() => {
-          navigate("/login");
-        });
-      })
-      .catch((e) => {
-        dialogs.error("Error", e.response.data);
+    console.log(data)
+    registerUser(data).then(() => {
+      dialogs.success("Success", "Register").then(() => {
+        navigate("/login");
       });
+    })
+      .catch((e) => {
+        dialogs.error("Register Error", e.response.data);
+      })
   };
 
   const handleBusinessCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -288,7 +287,7 @@ const Register = () => {
         </section>
 
         {/* isBusiness */}
-      {/*   <section className="checkbox-container">
+        {/*   <section className="checkbox-container">
           <label htmlFor="isBusiness">Business</label>
           <input id="isBusiness" type="checkbox" {...register("isBusiness")} />
           {errors.isBusiness && (
@@ -303,8 +302,8 @@ const Register = () => {
             id="isBusiness"
             type="checkbox"
             defaultChecked={isBusiness}
-            onChange={handleBusinessCheckboxChange}
             {...register("isBusiness")}
+            onChange={handleBusinessCheckboxChange as any}
           />
           {errors.isBusiness && (
             <p className="text-red-500">{errors.isBusiness?.message}</p>

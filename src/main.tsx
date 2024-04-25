@@ -11,15 +11,22 @@ import { ThemeProvider } from "./contexts/ThemeContext.tsx";
 import { router } from "./routes/router.tsx";
 import { AuthContextProvider } from "./contexts/AuthContext.tsx";
 import { CardProvider } from "./contexts/CardsContext.tsx";
+import axios from "axios";
+
+axios.interceptors.request.use((req) => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    req.headers["x-auth-token"] = token
+  }
+  return req;
+})
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <AuthContextProvider>
-      <ThemeProvider>
-        <CardProvider>
+  <AuthContextProvider>
+    <ThemeProvider>
+      <CardProvider>
         <RouterProvider router={router} />
-        </CardProvider>
-      </ThemeProvider>
-    </AuthContextProvider>
-  </React.StrictMode>
+      </CardProvider>
+    </ThemeProvider>
+  </AuthContextProvider>
 );

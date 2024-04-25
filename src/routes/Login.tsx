@@ -1,26 +1,24 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { LoginUser } from "../@types/types";
-import { useAuth } from "../hooks/useAuth";
 import auth from "../services/auth";
 import dialogs, { showSuccessDialog } from "../ui/dialogs";
 import patterns from "../validation/patterns";
+import { useAuth } from "../contexts/AuthContext";
 
 const Login = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
 
   const onLogin = (data: LoginUser) => {
-    auth
-      .login(data)
-      .then((res) => {
+    login(data.email, data.password)
+      .then(() => {
         showSuccessDialog("Login", "Logged in").then(() => {
-          login(res.data);
           // send the user to home page
           navigate("/");
         });
       })
-      .catch((e) => {
+      .catch((e: any) => {
         dialogs.error("Login Error", e.response.data);
       });
   };
