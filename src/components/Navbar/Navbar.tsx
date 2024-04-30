@@ -34,10 +34,15 @@ const Navbar = () => {
           </button>
         )}
 
-        {isLoggedIn && <NavLink to="/profile">{/* <RxAvatar/> */} Profile</NavLink>}
+
+        {/* {isLoggedIn && <NavLink to="/profile"> Profile</NavLink>} */}
+
         {isLoggedIn && <NavLink to="/favorites">Favorites</NavLink>}
         {isLoggedIn && user?.isBusiness && (
           <NavLink to="/create-card">Create Card</NavLink>
+        )}
+        {isLoggedIn && user?.isBusiness && (
+          <NavLink to="/my-cards">My Cards</NavLink>
         )}
         <DarkModeToggle />
       </div>

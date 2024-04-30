@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Spinners from "../components/Spinners";
-import { useCardContext } from "../contexts/CardsContext"; // Import useCardContext instead of useCards
+import { useCardContext } from "../contexts/CardsContext";
 import "./Cards.scss";
 import { useState, useEffect } from "react";
 import FavoriteButton from "../components/FavoriteButton";

@@ -19,6 +19,7 @@ export type User = {
   email: string
   name: {
     first: string
+    middle: string
     last: string
   },
   phone: string
@@ -54,7 +55,7 @@ export const AuthContextProvider = ({ children }) => {
   }, [token])
 
 
-  const login = async (email: string, password: string) => {
+ const login = async (email: string, password: string) => {
     await auth
       .login({ email, password })
       .then((res) => {
@@ -62,7 +63,27 @@ export const AuthContextProvider = ({ children }) => {
         localStorage.setItem("token", res.data);
       })
 
-  }
+  } 
+
+ /*  const login = async (email: string, password: string) => {
+    await auth.login({ email, password })
+      .then((res) => {
+        const token = res.data;
+        setToken(token);
+        localStorage.setItem("token", token);
+
+        // Decode token and fetch user details
+        const decoded = jwtDecode(token);
+        return auth.userDetails(decoded._id);
+      })
+      .then((userRes) => {
+        setUser(userRes.data); // Set the user in state
+      })
+      .catch((error) => {
+        console.error("Login failed:", error);
+      });
+  } */
+
 
   const register = async (form: RegisterUser) => {
     await auth

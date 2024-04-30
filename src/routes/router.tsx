@@ -10,6 +10,7 @@ import Root from "../layouts/Root.tsx";
 import ProtectedRoute from "../components/ProtectedRoute.tsx";
 import Profile from "./Profile.tsx";
 import CreateCard from "./CreateCard.tsx";
+import MyCards from "./MyCards.tsx";
 
 export const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ export const router = createBrowserRouter([
       {
         path: "/create-card",
         element: <CreateCard />,
+      },
+      {
+        path: "/my-cards",
+        element: <MyCards />,
       },
       { path: "/practice", element: <Practice /> },
     ],
