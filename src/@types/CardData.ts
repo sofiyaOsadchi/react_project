@@ -1,6 +1,7 @@
 // File: @types/types.ts
 
 export interface CardData {
+    _id: string;
     title: string; // required, min length 2, max length 256
     subtitle: string; // required, min length 2, max length 256
     description: string; // required, min length 2, max length 1024

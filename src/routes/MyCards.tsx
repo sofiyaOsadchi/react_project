@@ -51,6 +51,7 @@ const MyCards = () => {
         <div className="cards-container dark:bg-gray-700">
             {cards.map((card) => (
                 <div key={card._id} className="card dark:bg-gray-500 dark:text-white rounded-lg shadow-lg p-4">
+                    <Link to={`/update/${card._id}`}>UPDATE</Link>
                     <Link to={`/cards/${card._id}`} className="card-link">
                         <FavoriteButton
                             cardId={card._id}
@@ -60,7 +61,6 @@ const MyCards = () => {
                         <h2 className="card-title">{card.title}</h2>
                         <hr />
                         <p className="card-subtitle">{card.subtitle}</p>
-                        <Link to={`update/${card._id}`}> UPDATE</Link>
                         <img src={card.image.url} alt={card.image.alt} className="card-image" />
                     </Link>
                 </div>

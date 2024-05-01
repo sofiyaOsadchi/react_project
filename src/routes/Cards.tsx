@@ -5,18 +5,21 @@ import "./Cards.scss";
 import { useState, useEffect } from "react";
 import FavoriteButton from "../components/FavoriteButton";
 import { useCards } from "../hooks/useCards";
+import { useAuth } from "../contexts/AuthContext";
+import axios from "axios";
 
-const Cards = ({ favoritesOnly = false }) => { 
+const Cards = ({ favoritesOnly = false }) => {
   const { cards: contextCards } = useCardContext();
-  const { loading, error } = useCards(); 
+  const { loading, error } = useCards();
   const [favorites, setFavorites] = useState<string[]>([]);
+  const { token } = useAuth(); // new
 
   useEffect(() => {
     const currentFavorites = JSON.parse(localStorage.getItem("favorites") || "[]");
     setFavorites(currentFavorites);
   }, []);
 
-  function addToFavorites(cardId: string) {
+  /* function addToFavorites(cardId: string) {
     const currentFavorites = [...favorites];
     if (currentFavorites.includes(cardId)) {
       const index = currentFavorites.indexOf(cardId);
@@ -26,11 +29,39 @@ const Cards = ({ favoritesOnly = false }) => {
     }
     setFavorites(currentFavorites);
     localStorage.setItem("favorites", JSON.stringify(currentFavorites));
+  } */
+
+  const addToFavorites = async (cardId: string) => {
+    try {
+      // Example of how to use the token to call the API
+    /*   await axios.patch(
+        `https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards/${cardId}`,
+        {}, // No data required for patching
+        { headers: { 'x-auth-token': token } }
+      ); */
+
+      // Update the local favorites list
+      const currentFavorites = [...favorites];
+      if (currentFavorites.includes(cardId)) {
+        const index = currentFavorites.indexOf(cardId);
+        currentFavorites.splice(index, 1);
+      } else {
+        currentFavorites.push(cardId);
+      }
+      setFavorites(currentFavorites);
+
+
+      /* localStorage.setItem("favorites", JSON.stringify(currentFavorites)); */
+
+
+    } catch (e) {
+      console.error("Failed to update favorite status:", e);
+    }
   }
 
-  const filteredCards = favoritesOnly 
+  const filteredCards = favoritesOnly
     ? contextCards.filter(card => favorites.includes(card._id))
-    : contextCards; 
+    : contextCards;
 
   return (
     <div className="cards-container dark:bg-gray-700">
