@@ -11,6 +11,7 @@ import ProtectedRoute from "../components/ProtectedRoute.tsx";
 import Profile from "./Profile.tsx";
 import CreateCard from "./CreateCard.tsx";
 import MyCards from "./MyCards.tsx";
+import UpdateCard from "./UpdateCard.tsx";
 
 export const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ export const router = createBrowserRouter([
       {
         path: "/my-cards",
         element: <MyCards />,
+      },
+      {
+        path: "/update/:id",
+        element: <UpdateCard />,
       },
       { path: "/practice", element: <Practice /> },
     ],

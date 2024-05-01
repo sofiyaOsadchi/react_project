@@ -60,6 +60,7 @@ const MyCards = () => {
                         <h2 className="card-title">{card.title}</h2>
                         <hr />
                         <p className="card-subtitle">{card.subtitle}</p>
+                        <Link to={`update/${card._id}`}> UPDATE</Link>
                         <img src={card.image.url} alt={card.image.alt} className="card-image" />
                     </Link>
                 </div>
