@@ -14,9 +14,16 @@ const Navbar = () => {
     <nav className="site-navbar">
       <div className="nav-left">
         <NavLink to="/" className="brand">
-          Home
           <FaHome />
+          Home
         </NavLink>
+        {isLoggedIn && <NavLink to="/favorites">Favorites</NavLink>}
+        {isLoggedIn && user?.isBusiness && (
+          <NavLink to="/create-card">Create Card</NavLink>
+        )}
+        {isLoggedIn && user?.isBusiness && (
+          <NavLink to="/my-cards">My Cards</NavLink>
+        )}
 
       </div>
 
@@ -37,13 +44,7 @@ const Navbar = () => {
 
         {/* {isLoggedIn && <NavLink to="/profile"> Profile</NavLink>} */}
 
-        {isLoggedIn && <NavLink to="/favorites">Favorites</NavLink>}
-        {isLoggedIn && user?.isBusiness && (
-          <NavLink to="/create-card">Create Card</NavLink>
-        )}
-        {isLoggedIn && user?.isBusiness && (
-          <NavLink to="/my-cards">My Cards</NavLink>
-        )}
+        
         <DarkModeToggle />
       </div>
     </nav>

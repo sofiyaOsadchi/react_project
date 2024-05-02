@@ -5,6 +5,7 @@ import Spinners from '../components/Spinners';
 import FavoriteButton from '../components/FavoriteButton';
 import { AuthContext } from '../contexts/AuthContext';
 import './Cards.scss';
+import { FiEdit2 } from 'react-icons/fi';
 
 const MyCards = () => {
     const [cards, setCards] = useState([]);
@@ -51,7 +52,7 @@ const MyCards = () => {
         <div className="cards-container dark:bg-gray-700">
             {cards.map((card) => (
                 <div key={card._id} className="card dark:bg-gray-500 dark:text-white rounded-lg shadow-lg p-4">
-                    <Link to={`/update/${card._id}`}>UPDATE</Link>
+                    <Link to={`/update/${card._id}`} style={{ textAlign: "right", color: "#007bff"}}><FiEdit2 /></Link>
                     <Link to={`/cards/${card._id}`} className="card-link">
                         <FavoriteButton
                             cardId={card._id}
