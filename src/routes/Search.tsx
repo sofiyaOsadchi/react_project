@@ -35,7 +35,7 @@ const Search = () => {
 
     useEffect(() => {
         const f = allCards.filter((c) => c.title.includes(search));
-        setCards(f); // Set the filtered cards in the context
+        setCards(f); 
     }, [search, allCards]);
 
     return (

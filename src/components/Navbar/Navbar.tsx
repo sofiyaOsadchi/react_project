@@ -1,4 +1,4 @@
-import { FaHome } from "react-icons/fa";
+import { FaHeart, FaHome } from "react-icons/fa";
 import { RxAvatar } from "react-icons/rx";
 import { NavLink, useNavigate } from "react-router-dom";
 import DarkModeToggle from "../DarkModeToggle/DarkModeToggle";
@@ -17,14 +17,15 @@ const Navbar = () => {
           <FaHome />
           Home
         </NavLink>
-        {isLoggedIn && <NavLink to="/favorites">Favorites</NavLink>}
-        {isLoggedIn && user?.isBusiness && (
-          <NavLink to="/create-card">Create Card</NavLink>
-        )}
+        {isLoggedIn && <NavLink to="/favorites"><span style={{ display: 'inline-block' }}>{/* <FaHeart /> */}Favorites</span></NavLink>}
+        
         {isLoggedIn && user?.isBusiness && (
           <NavLink to="/my-cards">My Cards</NavLink>
         )}
 
+        {isLoggedIn && user?.isBusiness && (
+          <NavLink to="/create-card">Create Card</NavLink>
+        )}
       </div>
 
       <div className="nav-right">

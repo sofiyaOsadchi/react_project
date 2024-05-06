@@ -6,6 +6,7 @@ import FavoriteButton from '../components/FavoriteButton';
 import { AuthContext } from '../contexts/AuthContext';
 import './Cards.scss';
 import { FiEdit2 } from 'react-icons/fi';
+import { FaTrash } from 'react-icons/fa';
 
 const MyCards = () => {
     const [cards, setCards] = useState([]);
@@ -35,6 +36,22 @@ const MyCards = () => {
             });
     }, [token]);  // Depend on token to re-run effect
 
+    const deleteCard = (cardId: string) => {
+        if (window.confirm("Are you sure you want to delete this card?")) {
+            axios.delete(`https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards/${cardId}`, {
+                headers: { 'x-auth-token': token }
+            })
+                .then(() => {
+                    // Remove card from state
+                    setCards(cards.filter(card => card._id !== cardId));
+                })
+                .catch(err => {
+                    console.error("Error deleting card:", err);
+                });
+        }
+    };
+
+
     // Function to handle adding/removing favorites
     const addToFavorites = (cardId) => {
         const newFavorites = favorites.includes(cardId)
@@ -53,6 +70,7 @@ const MyCards = () => {
             {cards.map((card) => (
                 <div key={card._id} className="card dark:bg-gray-500 dark:text-white rounded-lg shadow-lg p-4">
                     <Link to={`/update/${card._id}`} style={{ textAlign: "right", color: "#007bff"}}><FiEdit2 /></Link>
+                    <FaTrash onClick={() => deleteCard(card._id)} style={{ cursor: 'pointer', color: 'red', marginLeft: '10px' }} /> {/* Add delete icon */}
                     <Link to={`/cards/${card._id}`} className="card-link">
                         <FavoriteButton
                             cardId={card._id}
