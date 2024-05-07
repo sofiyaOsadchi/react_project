@@ -21,3 +21,13 @@ export interface CardData {
         zip: number; // optional
     };
 }
+
+export interface Card {
+    _id: string;
+    title: string;
+    subtitle: string;
+    image: {
+        url: string;
+        alt: string;
+    };
+} 

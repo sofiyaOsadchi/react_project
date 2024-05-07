@@ -1,4 +1,43 @@
-import { Button, Stack, TextField } from "@mui/material";
+// Search.tsx
+// Search.tsx
+import { Stack, TextField } from "@mui/material";
+import { useSearch } from "../contexts/SearchContext";
+import "./Search.scss";
+
+const Search = () => {
+    const { setSearchTerm } = useSearch(); // Access the search term setter from the context
+
+    return (
+        <Stack className="search-container">
+            <TextField
+                className="search-input dark:bg-gray-700 dark:text-white"
+                onChange={(e) => {
+                    setSearchTerm(e.currentTarget.value); // Update the search term in the context
+                }}
+                variant="outlined"
+                label="Search"
+                required
+            />
+        </Stack>
+    );
+};
+
+export default Search;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* import { Button, Stack, TextField } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { CardType } from "../@types/types";
@@ -21,6 +60,7 @@ const Item = ({ text, collapsed, id, callback }) => {
 
     return <div>{text}</div>;
 };
+
 
 const Search = () => {
     const { cards, setCards } = useCardContext();
@@ -59,4 +99,4 @@ const Search = () => {
     );
 };
 
-export default Search;
+export default Search; */

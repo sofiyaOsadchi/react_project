@@ -1,0 +1,33 @@
+.update{
+    display: flex;
+    color: #333;
+}
+
+.card-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.card-edit-icon,
+.card-delete-icon {
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.card-edit-icon {
+    color: #a1c9f4;
+    /* Adjust the color as needed */
+}
+
+.card-delete-icon {
+    color: red;
+    /* Adjust the color as needed */
+}
+
+.card-edit-icon:hover,
+.card-delete-icon:hover {
+    transform: scale(1.1);
+    /* Hover effect */
+}

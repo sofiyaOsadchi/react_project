@@ -65,26 +65,6 @@ export const AuthContextProvider = ({ children }) => {
 
   } 
 
- /*  const login = async (email: string, password: string) => {
-    await auth.login({ email, password })
-      .then((res) => {
-        const token = res.data;
-        setToken(token);
-        localStorage.setItem("token", token);
-
-        // Decode token and fetch user details
-        const decoded = jwtDecode(token);
-        return auth.userDetails(decoded._id);
-      })
-      .then((userRes) => {
-        setUser(userRes.data); // Set the user in state
-      })
-      .catch((error) => {
-        console.error("Login failed:", error);
-      });
-  } */
-
-
   const register = async (form: RegisterUser) => {
     await auth
       .register(form)
@@ -112,36 +92,6 @@ export const useAuth = () => {
   return context;
 }
 
-/* export const AuthContext = createContext({
-  isLoggedIn: false,
-  login: (jwt: string) => {},
-  logout: () => {},
-});
-
-export const AuthContextProvider = ({ children }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  // run code once - when the component is mounted:
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      setIsLoggedIn(true);
-    }
-  }, []);
-
-  const login = (jwt: string) => {
-    setIsLoggedIn(true);
-    localStorage.setItem("token", jwt);
-  };
-
-  const logout = () => {
-    setIsLoggedIn(false);
-    localStorage.removeItem("token");
-  };
-
-  return (
-    <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
-      {children}
-    </AuthContext.Provider>
-  );
-}; */
+/* export const AuthContext = createContext<AuthContextType>(
+  {} as AuthContextType
+); */
