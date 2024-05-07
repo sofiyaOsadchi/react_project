@@ -36,7 +36,7 @@ const Cards = ({ favoritesOnly = false }) => {
 
 
 
-  const addToFavorites = async (cardId: string) => {
+ /*  const addToFavorites = async (cardId: string) => {
     try {
       // Update the local favorites list
       const currentFavorites = [...favorites];
@@ -50,7 +50,16 @@ const Cards = ({ favoritesOnly = false }) => {
     } catch (e) {
       console.error("Failed to update favorite status:", e);
     }
-  }
+  } */
+
+  // Function to handle adding/removing favorites
+  const addToFavorites = (cardId) => {
+    const newFavorites = favorites.includes(cardId)
+      ? favorites.filter(id => id !== cardId)  // Remove from favorites
+      : [...favorites, cardId];  // Add to favorites
+    setFavorites(newFavorites);
+    localStorage.setItem('favorites', JSON.stringify(newFavorites));
+  };
 
 
   const filteredCards = cards.filter(card => { // Filter cards based on search term and favorites
