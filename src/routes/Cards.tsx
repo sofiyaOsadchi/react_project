@@ -10,17 +10,11 @@ import axios from "axios";
 import { CardType } from "../@types/types";
 import { useSearch } from "../contexts/SearchContext";
 
-/* const Cards = ({ favoritesOnly = false }) => {
-  const { cards: contextCards } = useCardContext();
-  const { loading, error } = useCards();
-  const [favorites, setFavorites] = useState<string[]>([]);
-  const { token } = useAuth();  */
 
 const Cards = ({ favoritesOnly = false }) => {
-  const [cards, setCards] = useState<CardType[]>([]); // Updated
-  const [loading, setLoading] = useState<boolean>(true); // Manage loading state
-  const [error, setError] = useState<string | null>(null); // Manage error state
-
+  const [cards, setCards] = useState<CardType[]>([]); 
+  const [loading, setLoading] = useState<boolean>(true); 
+  const [error, setError] = useState<string | null>(null); 
   const [favorites, setFavorites] = useState<string[]>([]);
   const { token } = useAuth();
   const { searchTerm } = useSearch();
@@ -58,11 +52,13 @@ const Cards = ({ favoritesOnly = false }) => {
     }
   }
 
-  /* const filteredCards = favoritesOnly
-    ? contextCards.filter(card => favorites.includes(card._id))
-    : contextCards; */
 
-  const filteredCards = cards.filter(c => c.title.toLowerCase().includes(searchTerm.toLowerCase()));
+  const filteredCards = cards.filter(card => { // Filter cards based on search term and favorites
+    const matchesSearchTerm = card.title.toLowerCase().includes(searchTerm.toLowerCase());
+    return favoritesOnly
+      ? matchesSearchTerm && favorites.includes(card._id)
+      : matchesSearchTerm;
+  })
 
 
   return (
