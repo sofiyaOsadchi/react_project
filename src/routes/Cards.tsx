@@ -32,7 +32,7 @@ const Cards = ({ favoritesOnly = false }) => {
       })
       .catch(() => setError("Error fetching cards"))
       .finally(() => setLoading(false));
-  }, [token]);
+  }, []);
 
 
 

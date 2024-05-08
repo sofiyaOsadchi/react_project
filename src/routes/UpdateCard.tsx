@@ -5,6 +5,7 @@ import { CardType } from '../@types/types';
 import { useContext, useEffect } from 'react';
 import { AuthContext, useAuth } from '../contexts/AuthContext';
 import './CreateCard.scss';
+import dialogs from '../ui/dialogs';
 
 const mapToAllowedFields = (card: CardType): SanitizedCardType => ({
     title: card.title,
@@ -50,47 +51,6 @@ const UpdateCard = () => {
     }, [id, token, setValue]);
 
   
-
-    // Function to recursively remove unwanted fields from the card object
-  /*   const cleanCard = (card) => {
-        const removeFields = ['_id', 'likes', 'user_id', 'createdAt', '__v', 'bizNumber'];
-
-        const cleanObject = (obj) => {
-            const result = {};
-            for (const key in obj) {
-                if (!removeFields.includes(key)) {
-                    if (typeof obj[key] === 'object' && obj[key] !== null) {
-                        result[key] = cleanObject(obj[key]);
-                    } else {
-                        result[key] = obj[key];
-                    }
-                }
-            }
-            return result;
-        };
-        return cleanObject(card);
-    };
-
-    const onUpdateCard = (card: CardType) => {
-        // Clean the card object to remove specific fields
-        const sanitizedCard = cleanCard(card);
-
-        console.log("Attempting to update card with sanitized data:", sanitizedCard);
-
-        axios.put(url, sanitizedCard, {
-            headers: { 'x-auth-token': token }
-        })
-            .then(() => {
-                navigate('/my-cards');
-            })
-            .catch(err => {
-                console.error('Error updating card:', err);
-                if (err.response) {
-                    console.error('API Error Response:', err.response.data); // Log error response
-                }
-            });
-    }; */
-
     const onUpdateCard = (card: CardType) => {
         const sanitizedCard = mapToAllowedFields(card);
 
@@ -98,12 +58,14 @@ const UpdateCard = () => {
             headers: { 'x-auth-token': token }
         })
             .then(() => {
+                dialogs.success("Success", "Card was updated").then(() => {
                 navigate('/my-cards');
-            })
+            })})
             .catch(err => {
                 console.error('Error updating card:', err);
                 if (err.response) {
-                    console.error('API Error Response:', err.response.data); // Log error response
+                    console.error('API Error Response:', err.response.data); 
+                    dialogs.error("Update Failed", `Failed to update card: ${err.response.data.message || err.message}`)
                 }
             });
     };

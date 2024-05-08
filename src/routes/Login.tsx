@@ -5,6 +5,7 @@ import auth from "../services/auth";
 import dialogs, { showSuccessDialog } from "../ui/dialogs";
 import patterns from "../validation/patterns";
 import { useAuth } from "../contexts/AuthContext";
+import "./Login.scss"; 
 
 const Login = () => {
   const navigate = useNavigate();
@@ -30,9 +31,9 @@ const Login = () => {
   } = useForm<LoginUser>();
 
   return (
-    <div>
+    <div className="login-page dark:text">
       <h2>Login Page</h2>
-      <form noValidate onSubmit={handleSubmit(onLogin)}>
+      <form noValidate onSubmit={handleSubmit(onLogin)} className="dark:bg-slate-600">
         {/* email */}
         <section>
           <input
