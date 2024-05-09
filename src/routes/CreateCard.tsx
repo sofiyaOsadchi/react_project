@@ -38,8 +38,6 @@ const CreateCard = () => {
         <div className="create-card-container bg-purple-900  text-white dark:bg-slate-600">
             <h2>Create New Card</h2>
             <form noValidate onSubmit={handleSubmit(onSubmit)}>
-                {/* All form fields updated for card creation */}
-
                 <section>
                     <input placeholder="Title" {...register("title", { required: "Title is required"
                         ,
