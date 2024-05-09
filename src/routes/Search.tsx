@@ -1,5 +1,3 @@
-// Search.tsx
-// Search.tsx
 import { Stack, TextField } from "@mui/material";
 import { useSearch } from "../contexts/SearchContext";
 import "./Search.scss";
@@ -17,6 +15,16 @@ const Search = () => {
                 variant="outlined"
                 label="Search"
                 required
+
+                InputProps={{
+                    style: {
+                        color: 'white', // Ensures text color is white
+                        borderColor: 'white' // You might need to adjust border via theme or global styles
+                    }
+                }}
+                InputLabelProps={{
+                    style: { color: 'white' } // Ensures label text color is white
+                }}
             />
         </Stack>
     );

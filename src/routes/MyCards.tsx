@@ -6,6 +6,7 @@ import FavoriteButton from '../components/FavoriteButton';
 import { AuthContext } from '../contexts/AuthContext';
 import { useSearch } from '../contexts/SearchContext';
 import { CardType } from "../@types/types";
+import Swal from 'sweetalert2';
 import './Cards.scss';
 import './MyCards.scss';
 import {  FaEdit, FaTrash } from 'react-icons/fa';
@@ -42,7 +43,7 @@ const MyCards: FC = () => {
             });
     }, [token]);  
 
-    const deleteCard = (cardId: string) => {
+    /* const deleteCard = (cardId: string) => {
         if (window.confirm("Are you sure you want to delete this card?")) {
             axios.delete(`https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards/${cardId}`, {
                 headers: { 'x-auth-token': token }
@@ -55,7 +56,44 @@ const MyCards: FC = () => {
                     console.error("Error deleting card:", err);
                 });
         }
+    }; */
+
+    
+
+    const deleteCard = (cardId) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards/${cardId}`, {
+                    headers: { 'x-auth-token': token }
+                })
+                    .then(() => {
+                        setCards(cards.filter(card => card._id !== cardId)); // Update state
+                        Swal.fire(
+                            'Deleted!',
+                            'Your card has been deleted.',
+                            'success'
+                        )
+                    })
+                    .catch(err => {
+                        console.error("Error deleting card:", err);
+                        Swal.fire(
+                            'Failed!',
+                            'There was a problem deleting your card.',
+                            'error'
+                        )
+                    });
+            }
+        });
     };
+
 
 
     // Function to handle adding/removing favorites

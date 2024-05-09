@@ -7,7 +7,7 @@ import { AuthContext, useAuth } from '../contexts/AuthContext';
 import './CreateCard.scss';
 import dialogs from '../ui/dialogs';
 
-const mapToAllowedFields = (card: CardType): SanitizedCardType => ({
+const mapToAllowedFields = (card: CardType)=> ({
     title: card.title,
     subtitle: card.subtitle,
     description: card.description,

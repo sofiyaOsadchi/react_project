@@ -23,4 +23,48 @@
     flex-direction: row;
     gap: 1rem;
   }
+
+.user-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.user-name-button {
+  background: none;
+  border: none;
+  color: inherit;
+  /* Adapts the color from the parent element */
+  font: inherit;
+  /* Inherits font properties from the parent */
+  cursor: pointer;
+  padding: 10px;
+  display: block;
+}
+
+.user-menu-content {
+  display: none;
+  position: absolute;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.user-menu-content button {
+  color: #f9f9f9;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  border: none;
+  width: 100%;
+  background: none;
+}
+
+.user-menu:hover .user-menu-content {
+  display: block;
+}
+
+
+
+
 }

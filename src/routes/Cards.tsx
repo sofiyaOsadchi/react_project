@@ -72,8 +72,11 @@ const Cards = ({ favoritesOnly = false }) => {
 
   return (
     <div className="cards-container dark:bg-gray-700">
+
       {loading && <Spinners />}
       {error && <div>{error}</div>}
+
+     
 
       {filteredCards.map((c) => (
         <div key={c._id}>

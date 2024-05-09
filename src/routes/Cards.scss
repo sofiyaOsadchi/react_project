@@ -3,6 +3,21 @@ body.dark{
     color: #fff;
 
 }
+
+
+
+.cards-container h1 {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 10px;
+   
+}
+
+@media (max-width: 768px) {
+    .cards-container h1 {
+        font-size: 3rem;
+    }
+}
 .cards-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
