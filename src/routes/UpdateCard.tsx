@@ -155,26 +155,41 @@ const UpdateCard = () => {
                     placeholder="State"
                     {...register('address.state')}
                 />
+                </section>
+                <section>
                 <input
                     className="create-card-input"
                     placeholder="Country"
                     {...register('address.country')}
                 />
+
+                </section>
+
+                <section>
                 <input
                     className="create-card-input"
                     placeholder="City"
                     {...register('address.city')}
                 />
+                </section>
+
+                <section>
                 <input
                     className="create-card-input"
                     placeholder="Street"
                     {...register('address.street')}
                 />
+                </section>
+
+                <section>
                 <input
                     className="create-card-input"
                     placeholder="House Number"
                     {...register('address.houseNumber')}
                 />
+                </section>
+
+                <section>
                 <input
                     className="create-card-input"
                     placeholder="Zip"

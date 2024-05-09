@@ -41,17 +41,28 @@ const CreateCard = () => {
                 {/* All form fields updated for card creation */}
 
                 <section>
-                    <input placeholder="Title" {...register("title", { required: "Title is required" })} />
+                    <input placeholder="Title" {...register("title", { required: "Title is required"
+                        ,
+                        minLength: { value: 2, message: "Too short" },
+                        maxLength: { value: 255, message: "Too long" },
+                     })} />
                     {errors.title && <p className="text-red-500">{errors.title.message}</p>}
+
                 </section>
 
                 <section>
-                    <input placeholder="Subtitle" {...register("subtitle", { required: "Subtitle is required" })} />
+                    <input placeholder="Subtitle" {...register("subtitle", { required: "Subtitle is required",
+                        minLength: { value: 2, message: "Too short" },
+                        maxLength: { value: 255, message: "Too long" },
+                     })} />
                     {errors.subtitle && <p className="text-red-500">{errors.subtitle.message}</p>}
                 </section>
 
                 <section>
-                    <input placeholder="Description" {...register("description", { required: "Description is required" })} />
+                    <input placeholder="Description" {...register("description", { required: "Description is required",
+                        minLength: { value: 2, message: "Too short" },
+                        maxLength: { value: 1024, message: "Too long" },
+                     })} />
                     {errors.description && <p className="text-red-500">{errors.description.message}</p>}
                 </section>
                 
