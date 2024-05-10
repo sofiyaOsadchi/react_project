@@ -35,23 +35,6 @@ const Cards = ({ favoritesOnly = false }) => {
   }, []);
 
 
-
- /*  const addToFavorites = async (cardId: string) => {
-    try {
-      // Update the local favorites list
-      const currentFavorites = [...favorites];
-      if (currentFavorites.includes(cardId)) {
-        const index = currentFavorites.indexOf(cardId);
-        currentFavorites.splice(index, 1);
-      } else {
-        currentFavorites.push(cardId);
-      }
-      setFavorites(currentFavorites);
-    } catch (e) {
-      console.error("Failed to update favorite status:", e);
-    }
-  } */
-
   // Function to handle adding/removing favorites
   const addToFavorites = (cardId) => {
     const newFavorites = favorites.includes(cardId)
@@ -71,21 +54,18 @@ const Cards = ({ favoritesOnly = false }) => {
 
 
   return (
-    <div className="cards-container dark:bg-gray-700">
-
+    <div className="page-container dark:bg-gray-700">
+      <h1 className="page-title text-5xl text-purple-300 mt-4">Tsofiya Osadchi's Project</h1>
+      <div className="cards-container">
       {loading && <Spinners />}
       {error && <div>{error}</div>}
-
-     
-
       {filteredCards.map((c) => (
         <div key={c._id}>
-          
           <Link to={`/cards/${c._id}`} className="card-link dark:bg-gray-500 dark:text-white rounded-lg shadow-lg p-4">
             <FavoriteButton
               cardId={c._id}
               isFavorite={favorites.includes(c._id)}
-              onToggleFavorite={addToFavorites} token={""}  />
+              onToggleFavorite={addToFavorites} token={""}            />
             <h2 className="card-title">{c.title}</h2>
             <hr />
             <p className="card-subtitle">{c.subtitle}</p>
@@ -94,7 +74,10 @@ const Cards = ({ favoritesOnly = false }) => {
         </div>
       ))}
     </div>
+    </div>
+    
   );
 };
+
 
 export default Cards;

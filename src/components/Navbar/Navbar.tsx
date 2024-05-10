@@ -1,4 +1,4 @@
-import { FaHeart, FaHome } from "react-icons/fa";
+import { FaCaretDown, FaHeart, FaHome } from "react-icons/fa";
 import { RxAvatar } from "react-icons/rx";
 import { NavLink, useNavigate } from "react-router-dom";
 import DarkModeToggle from "../DarkModeToggle/DarkModeToggle";
@@ -37,17 +37,7 @@ const Navbar = () => {
       <div className="nav-right">
         {!isLoggedIn && <NavLink to="/register">Register</NavLink>}
         {!isLoggedIn && <NavLink to="/login">Login</NavLink>}
-        {/* {isLoggedIn && (
-          <button
-            onClick={() => {
-              logout();
-              navigate("/login");
-            }}
-          >
-            Logout
-          </button>
-        )} */}
-
+       
 
         {/* {isLoggedIn && <NavLink to="/profile"> Profile</NavLink>} */}
 
@@ -61,6 +51,9 @@ const Navbar = () => {
                     {user.name.last.charAt(0).toUpperCase() + user.name.last.slice(1)}
                   </span>
                 )}
+                <span>
+                <FaCaretDown className="dropdown-icon" />
+                </span>
               </button>
               <div className="user-menu-content">
                 <button
