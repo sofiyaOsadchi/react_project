@@ -17,4 +17,15 @@
     border: 1px solid #fff;
 }
 
+@media (max-width: 768px) {
+    .search-container {
+     
+        right: 0; 
+        width: calc(70% - 20px); 
+        align-items: end;
 
+        .search-input {
+            width: 100%;
+        }
+    }
+}
