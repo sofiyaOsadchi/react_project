@@ -1,30 +1,20 @@
-# React + TypeScript + Vite
+Digital Business Card Management Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Overview
+Welcome to the Digital Business Card Management Platform. This web application provides a seamless interface for creating, managing, and sharing digital business cards. Whether you are a business professional or someone looking to expand your network, this platform offers all the necessary tools to manage your digital contacts effectively.
 
-Currently, two official plugins are available:
+Features
+User Authentication: Secure login and registration for users.
+Create Digital Cards: Easily create and customize digital business cards.
+Manage Cards: Edit or delete cards that you have created.
+Favorite Cards: Mark cards as favorites for quick access.
+Search Functionality: Quickly search for cards by title.
+Dark Mode: Switch between light and dark themes for better accessibility.
+Responsive Design: Optimized for both desktop and mobile devices.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Technologies Used
+Frontend: React, Tailwind CSS, Material Tailwind, Axios
+State Management: React Context API
+Routing: React Router
+Icons: React Icons
+Styling: SCSS, Tailwind CSS
